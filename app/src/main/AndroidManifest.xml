@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.mashroom.mymemoapp">
 
+    <permission android:name="in.mashroom.mymemoapp.memo.read"
+        android:protectionLevel="normal"
+        android:label="@string/permission_memo_read_label"
+        android:description="@string/permission_memo_read_description"/>
+
+    <permission android:name="in.mashroom.mymemoapp.memo.write"
+        android:protectionLevel="signature"
+        android:label="@string/permission_memo_write_label"
+        android:description="@string/permission_memo_write_description"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="in.mashroom.mymemoapp.memo"
+            android:name=".MemoProvider"
+            android:writePermission="in.mashroom.mymemoapp.memo.write"
+            android:readPermission="in.mashroom.mymemoapp.memo.read"
+            android:exported="true"/>
     </application>
 
 </manifest>
